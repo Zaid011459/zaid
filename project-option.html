@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Options</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Project Description Wrapper -->
+    <div class="project-description">
+        <!-- Text Content Section -->
+        <div class="text-content">
+            <!-- Title of the project -->
+            <h2 id="project-title"></h2>
+
+            <!-- Project description -->
+            <p id="project-description"></p>
+            
+                <!-- Links for Presentation, GitHub, etc. -->
+                <div class="project-links">
+                    <a id="view-presentation" href="#" target="_blank" style="display:none;">📑 View presentation</a>
+                    <a id="view-report" href="#" target="_blank" style="display:none;">📑 View Report</a>
+                    <a id="view-video" href="#" target="_blank" style="display:none;">📑 View Video</a>
+                    <a id="view-github" href="#" target="_blank" style="display:none;">🌐 View on GitHub</a>
+                    <a id="view-code" href="#"  style="display:none;">📄 Code</a>
+                    <a id="view-networksecurity" href="#" target="_blank" style="display:none;">📑 network security</a>
+                    <a id="view-progsec" href="#" target="_blank" style="display:none;">📑 programming security</a>
+                    <a id="view-certificates" href="#" target="_blank" style="display:none;">📑 View certificates</a>
+                    <a id="view-gallery" href="#" style="display:none;">🖼️ View Gallery</a>
+                    <a id="view-website" href="#" target="_blank" style="display:none;">🌐 Visit Website</a>
+                    <a id="view-youtube" href="#" target="_blank" style="display:none;">▶️ Youtube Channel</a>
+
+                </div>
+
+            <!-- Back to main projects page -->
+            <a href="index.html">← Back to Projects</a>
+        </div>
+
+        <!-- Project Image Section -->
+        <img id="project-image" src="#" alt="Project Image">
+    </div>
+    <!-- Modal for Image Gallery -->
+    <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="modal-images"></div>
+    </div>
+
+
+    <script>
+       const projects = {
+    "1": {
+        title: "Vehicular Whisper Net: Silent Car Security",
+        description: "I developed an AI-based system designed to analyze the academic tree (study plan) for the Network Security Engineering major. The system uses the student's university ID number to determine their current academic year, then analyzes completed and remaining courses to recommend the most suitable course schedule for the upcoming semester. The recommendation is based on course prerequisites and the optimal academic path. The main goal of this project is to simplify the registration process and provide smart, personalized guidance to help students graduate on time.",
+        image: "project1.jpg",  
+        images: ["aiproject1.jpg", "aiproject1_alt1.jpg", "aiproject1_alt2.jpg" , "aiproject1_alt3.jpg"], // for gallery
+        buttons: {
+        }
+    },
+    "2": {
+        title: "Power Team ",
+        description: "During my university years, I served as the leader of a student volunteer group called Power Team. I was also responsible for technical support of the team’s official website. I designed and maintained a large portion of the website to ensure it provided helpful and organized content for students, aiming to benefit as many of them as possible by improving access to academic resources and information.",
+        image: "Powerteam.jpg",  
+        buttons: {
+            website: "https://eleeng.webnode.page/",
+            youtube: "https://www.youtube.com/@powerteamahu885"
+        }
+    },
+    "3": {
+        title: "Microcontroller Project",
+        description: "This project marked my starting point in the world of microcontrollers. I designed and built an electrical circuit connected to a mobile phone via Bluetooth, allowing users to control room lights using voice commands or messages sent from the phone, such as turning the lights on or off. The goal was to make home control more convenient, serving as an introduction to smart home applications.",
+        image: "Microcontroller_Project.PNG",  
+        buttons: {
+            video: "Microcontroller Project.mp4",
+        }
+    },
+    "4": {
+        title: "Man in the Middle Attack – Active",
+        description:"I independently developed a project titled 'Man in the Middle Attack – Active', which demonstrates how an attacker can intercept and relay communication between a client and a server without either party being aware. The project focused on highlighting vulnerabilities in unencrypted connections. I participated in the IEEE Cybersecurity Competition with this project and achieved second place. This experience significantly deepened my understanding of network attack techniques and security defense mechanisms.",
+        image:  "MAMSOLO.jpg",  
+        images: ["MAMSOLO.jpg", "MAMSOLO1.jpg", "MAMSOLO2.jpg" ], // for gallery
+        buttons: {
+            presentation: "MIMSOLO.pptx"
+        }
+    },
+    "5": {
+        title: "Graduation Project – Man in the Middle Attack (MITM)",
+        description: "My graduation project was the peak of my journey in network security, where I explored one of the most dangerous and widely used cyber attacks: the Man in the Middle (MITM) Attack. I created a full simulation environment demonstrating how an attacker can silently intercept and manipulate communication between a client and server in real time. The project wasn't just about performing the attack — it aimed to raise awareness of its dangers and how to defend against it, using tools like mitmproxy, Wireshark, and advanced Python techniques. This wasn't just a script; it was a message: 'If your network isn’t protected, you are exposed.'' The project received strong praise from the evaluation committee for its bold concept, technical depth, and educational impact.",
+        image: "MIMgrad.jpg",  
+        buttons: {
+            presentation: "MIMgrad.pptx",
+            report: "MITMgrad.pdf"
+        }
+    },
+        "6": {
+        title: "Branch Connectivity Project – Zamzam Exchange Company",
+        description: "I was part of the technical team involved in a major infrastructure project at Zamzam Exchange Company, where I worked on securely connecting all company branches using VPN through a firewall solution. Additionally, I helped implement a centralized logging system that collects logs from all branches and sends them to the main server using the SNMP protocol. The goal was to enhance network visibility, improve security monitoring, and ensure a centralized and secure network infrastructure. This project gave me valuable real-world experience in enterprise-level network design and security.",
+        image: "zamzam.jpg",  
+        buttons: {
+        }
+    }
+};
+
+const urlParams = new URLSearchParams(window.location.search);
+const projectId = urlParams.get('project');
+
+const titleElement = document.getElementById('project-title');
+const descriptionElement = document.getElementById('project-description');
+const projectImage = document.getElementById('project-image');
+const presentationLink = document.getElementById('view-presentation');
+const githubLink = document.getElementById('view-github');
+const codelink = document.getElementById('view-code');
+const reportLink = document.getElementById('view-report');
+const videoLink = document.getElementById('view-video');
+const netseclink = document.getElementById('view-networksecurity');
+const progseclink = document.getElementById('view-progsec');
+const certificateslink = document.getElementById('view-certificates');
+const galleryLink = document.getElementById('view-gallery');
+const modalImagesContainer = document.getElementById('modal-images');
+const imageModal = document.getElementById('imageModal');
+
+
+
+// Set content based on project data
+if (projects[projectId]) {
+    const project = projects[projectId];
+    titleElement.textContent = project.title;
+    descriptionElement.textContent = project.description;
+    projectImage.src = project.image;
+
+    // Loop through the buttons and conditionally show them
+    for (let button in project.buttons) {
+        const buttonId = `view-${button}`;
+        const buttonLink = project.buttons[button];
+
+        // Show the button and set its href (or download attribute)
+        const buttonElement = document.getElementById(buttonId);
+        if (buttonElement) {
+            buttonElement.href = buttonLink;
+            buttonElement.style.display = 'inline-block';  // Show the button
+        }
+    }
+
+    if (project.images && project.images.length > 0) {
+            galleryLink.style.display = 'inline-block';
+            galleryLink.onclick = (e) => {
+                e.preventDefault();
+                modalImagesContainer.innerHTML = '';
+                project.images.forEach(imgSrc => {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    modalImagesContainer.appendChild(img);
+                });
+                imageModal.style.display = 'block';
+            };
+        }
+
+        // Close modal button
+        document.querySelector('.close').onclick = function () {
+            imageModal.style.display = 'none';
+        };
+
+        // Click outside modal to close
+        window.onclick = function (event) {
+            if (event.target == imageModal) {
+                imageModal.style.display = 'none';
+            }
+        };
+
+            modalImagesContainer.addEventListener('click', function (e) {
+        if (e.target.tagName === 'IMG') {
+            const fullView = document.createElement('div');
+            fullView.style.position = 'fixed';
+            fullView.style.top = '0';
+            fullView.style.left = '0';
+            fullView.style.width = '100%';
+            fullView.style.height = '100%';
+            fullView.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            fullView.style.display = 'flex';
+            fullView.style.justifyContent = 'center';
+            fullView.style.alignItems = 'center';
+            fullView.style.zIndex = '2000';
+
+            const fullImg = document.createElement('img');
+            fullImg.src = e.target.src;
+            fullImg.style.maxWidth = '90%';
+            fullImg.style.maxHeight = '90%';
+            fullImg.style.borderRadius = '10px';
+            fullImg.style.boxShadow = '0 0 20px white';
+
+            fullView.appendChild(fullImg);
+            document.body.appendChild(fullView);
+
+            // Close when clicking anywhere
+            fullView.onclick = () => document.body.removeChild(fullView);
+        }
+    });
+
+} else {
+    console.error("Project not found.");
+}
+
+    </script>
+
+</body>
+</html>

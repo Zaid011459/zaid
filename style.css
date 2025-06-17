@@ -98,16 +98,23 @@ section{
 
 /* Home Section */
 .home {
-    display: flex;
-    padding: 0 9%;
-    align-items: center;
-    background-size: cover;
-    background-position: center; ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 3rem;
 }
-.home-content{
-    max-width: 50rem;
-    z-index: 99;
+
+.home-content {
+  flex: 1 1 400px;
+  max-width: 600px;
 }
+
+.home-imgHover {
+  flex: 1 1 300px;
+  max-width: 350px;
+}
+
 
 .home-content h1 {
     position: relative;
@@ -868,27 +875,6 @@ span{
   color: var(--main-color);
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  #contact .heading {
-    font-size: 2.4rem;
-  }
-  
-  .contact-details {
-    padding: 2rem 1.5rem;
-  }
-  
-  .contact-details ul li {
-    font-size: 1.4rem;
-  }
-  
-  .contact-details ul li i {
-    font-size: 1.5rem;
-    min-width: 25px;
-  }
-}
-
-
 
 
 .footer{
@@ -1083,62 +1069,76 @@ section:nth-child(odd) .animate.scroll,
 
 
 @media (max-width: 768px) {
-    .header {
-        height: auto;
-        padding: 1rem 2%;
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 60%;
+        height: 100vh;
+        background: var(--bg-color);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 6rem 2rem;
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+
+    .navbar a {
+        margin: 1.5rem 0;
+        font-size: 1.8rem;
+        color: var(--text-color);
+        transition: 0.3s;
+    }
+
+    .navbar.active {
+        right: 0;
     }
 
     #menu-icon {
         display: block;
+        font-size: 3rem;
+        color: var(--text-color);
+        cursor: pointer;
+        z-index: 1000;
+    }
+    .home {
+        flex-direction: column-reverse; /* Show image below text */
+        align-items: center;
+        text-align: center;
     }
 
-    .navbar {
-        position: fixed; /* Fix navbar to top */
-        top: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        padding: .5rem 2%; /* Adjust padding */
-    }
-
-    .navbar a {
-        display: block;
-        margin: 1rem 0; /* Adjust margin */
-        font-size: 1.5rem; /* Reduce font size */
-        transform: translateX(-20rem);
-        transition: .25s ease;
-        transition-delay: 0s;
-    }
-
-    .navbar.active a {
-        transform: translateX(0);
-        transition-delay: .25s;
+    .home-content {
+        max-width: 90%;
+        font-size: 0.92em;
     }
 
     .home-content h1 {
-        font-size: 1rem;
+        font-size: 2.0rem;
+    }
+
+    .home-content .txt-animate h3 {
+        font-size: 1.5rem;
     }
 
     .home-content p {
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-        -moz-text-size-adjust: 100%;
-        text-size-adjust: 100%;
+        font-size: 1.1rem;
     }
 
-    .btn-box {
-        width: 100%;
-        margin-top: .4rem;
+    .home-imgHover {
+        max-width: 250px;
+        margin-top: 70px; 
     }
 
-    .btn-box .btn {
-        width: 100%;
-    }
-
-    .home-sci {
-        bottom: .2rem;
+    .img-container {
+        width: 150px;
+        height: auto;
     }
 }
+
+
+
 
 
 
@@ -1240,3 +1240,4 @@ section:nth-child(odd) .animate.scroll,
              width: 0;   
         }
     }
+    
